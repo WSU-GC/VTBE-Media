@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wsu-test-bb Building Block" default="package-dev" basedir=".">
+	<description>TODO Description For My Project</description>
+
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build/classes" />
+	<property name="web.dir" value="WebContent"/>
+	<property name="b2.package.name" value="WSU-Media"/>
+	
+	<target name="build" description="Compile source tree java files">
+        <mkdir dir="${build.dir}"/>
+        <javac destdir="${build.dir}" source="1.5" target="1.5">
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+
+	<target name="package-dev" depends="build">
+		<war destfile="${b2.package.name}.war" 
+			webxml="${web.dir}/WEB-INF/web.xml">
+			<classes dir="${build.dir}"></classes>
+			<fileset dir="${web.dir}">
+                <include name="**/*.*"/>
+            	<exclude name="**/*-javadoc.jar"/>
+            	<exclude name="**/*-sources.jar"/>
+            </fileset>
+			<zipfileset dir="env" includes="dev.properties" fullpath="env.properties" />
+		</war>
+	</target>
+	
+	<target name="package-prod" depends="build">
+		<war destfile="${b2.package.name}.war" 
+			webxml="${web.dir}/WEB-INF/web.xml">
+			<classes dir="${build.dir}"></classes>
+			<fileset dir="${web.dir}">
+                <include name="**/*.*"/>
+            	<exclude name="**/*-javadoc.jar"/>
+            	<exclude name="**/*-sources.jar"/>
+            </fileset>
+			<zipfileset dir="env" includes="prod.properties" fullpath="env.properties" />
+		</war>
+	</target>
+	
+</project>

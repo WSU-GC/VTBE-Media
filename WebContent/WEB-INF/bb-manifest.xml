@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <plugin>
+    <name value="GC Media"/>
+    <description value="Load content in a Fancybox"/>
+    <handle value="gc-media"/>
+    <version value="1.18"/>
+    <requires>
+      <bbversion value="9.1.0"/>
+    </requires>
+
+    <vendor>
+      <id value="wsu"/>
+      <name value="WSU"/>
+      <url value="wsu.edu"/>
+      <description value="WSU"/>
+    </vendor>
+    
+    <http-actions>
+    </http-actions>
+    
+    <!-- Mashup VTBE Tools. -->
+    <application-defs>
+     <application handle="gc-media" is-sys-tool="true" is-course-tool="true"
+                  is-org-tool="true" is-group-tool="false" use-ssl="false"
+                  name="GC Media" can-allow-guest="false"
+                  small-icon="" large-icon="">
+      <links>
+       <link>
+         <type value="vtbe_mashup_course" />
+         <name value="GC Media" />
+         <url value="vtbe/mashup.jsp?course_id=@X@course.id@X@" />
+         <description value="description" />
+       </link>       
+      </links>
+     </application>
+    </application-defs>
+
+    <permissions>
+      <permission type="persist" name="Content" actions="create,modify,delete"/>
+      <permission type="persist" name="contentfile" actions="create,modify,delete"/>
+      <permission type="persist" name="metadatacontentareaassociation" actions="create"/>
+      <permission type="persist" name="metadatapickeruserpreference" actions="create"/>
+      <permission type="persist" name="metadatapickerattributevalues" actions="create"/>      
+      <permission type="attribute" name="user.personalinfo" actions="get"/>            
+      <permission type="attribute" name="user.authinfo" actions="get"/>  
+      <permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;" actions="read,write" />
+    </permissions>
+
+  </plugin>
+</manifest>
